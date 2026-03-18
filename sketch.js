@@ -3,9 +3,6 @@ let l = 32;
 let levSm = 0;
 let old;
 let sliderOne;
-let sliderTwo;
-let maxMotion = 0;
-let motionSm = 0;
 
 function setup() {
   createCanvas(1280, 960, WEBGL);
@@ -40,9 +37,6 @@ function draw() {
   cam.loadPixels();
   old.loadPixels();
   translate(-cam.width / 2, -cam.height / 2, 0);
-  let totalMotion = 0;
-  let count = 0;
-  let threshold = 5;
 
   for (let y = 0; y < cam.height; y = y + l) {
       for (let x = 0; x < cam.width; x = x + l) {
