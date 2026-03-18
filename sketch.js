@@ -1,4 +1,4 @@
-let d = 20;
+let d = 16;
 let l = 32;
 let levSm = 0;
 let old;
@@ -41,23 +41,17 @@ function draw() {
       for (let x = 0; x < cam.width; x = x + l) {
           for (let z = 0; z < l * 10; z = z + l) {
             let p = (x + y * cam.width) * 4;
-
             let r = cam.pixels[p];
             let g = cam.pixels[p + 1];
             let b = cam.pixels[p + 2];
-            // console.log("r:", r, "g:", g, "b:", b);
             let br = (r * 2 + g * 3 + b) / 6;
-            // console.log("br:", br);
-
             let a = br * map(z, 0, 360, 2, 0.001) * map(levSm,0.001,0.1,0.001,2);
-            // console.log("a:", a);
-            
             let oldR = old.pixels[p];
             let oldG = old.pixels[p + 1];
             let oldB = old.pixels[p + 2];
             let oldBr = (oldR * 2 + oldG * 3 + oldB) / 6;
             sliderOne.value(map(br, 0, 200, 2, 30));
-            let motion = abs(br - oldBr);
+            let motion = abs(oldBrbr - br);
             }
             push();
             translate(x + l/2, y + l/2, z + l/2)
@@ -70,7 +64,6 @@ function draw() {
     }
   cam.updatePixels();
   pop();
-  // console.log("level:", level, "levSm:", levSm);
 }
 
 function cube(r, g, b, a) {  
