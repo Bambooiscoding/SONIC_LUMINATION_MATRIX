@@ -5,7 +5,7 @@ let old;
 let sliderOne;
 
 function setup() {
-  createCanvas(1280, 960, WEBGL);
+  createCanvas(1440, 1080, WEBGL);
   pixelDensity(1);
   imageMode(CENTER);
   cam = createCapture(VIDEO);
@@ -29,7 +29,7 @@ function draw() {
   levSm = lerp(levSm, level, 0.8);
   push();
   if(levSm>0.01){
-    scale(map(abs(sin(t)),0,1,0.9,1.1));
+    scale(map(abs(sin(t)),0,1,1,1.2));
   }
   let rot = map(levSm, 0.001, 0.15, -PI/4, PI/4);
 
