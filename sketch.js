@@ -22,6 +22,7 @@ function setup() {
 
 function draw() {
   background(0);
+  scale(-1, 1);
   d = sliderOne.value();
   let t = frameCount*0.02;
   let level = mic.getLevel()
