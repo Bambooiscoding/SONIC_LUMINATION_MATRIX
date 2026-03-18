@@ -20,8 +20,6 @@ function setup() {
   mic.start(); 
   sliderOne = createSlider(2, 30, 16);
   sliderOne.parent("slider-holder");
-  sliderTwo = createSlider(20, 72, 46)
-  sliderTwo.parent("slider-holder");
 }
 
 
@@ -66,10 +64,6 @@ function draw() {
             let oldB = old.pixels[p + 2];
             let oldBr = (oldR * 2 + oldG * 3 + oldB) / 6;
             sliderOne.value(map(br, 0, 200, 2, 30));
-            let motion = abs(br - oldBr);
-            if (motion > threshold) {
-            totalMotion += motion;
-            count++;
             }
             push();
             translate(x + l/2, y + l/2, z + l/2)
@@ -80,9 +74,6 @@ function draw() {
             }
         }
     }
-  let avgMotion = count > 0 ? totalMotion / count : 0;
-  motionSm = lerp(motionSm, avgMotion, 0.1);
-  sliderTwo.value(map(motionSm, 0, 255, 20, 72));   
   cam.updatePixels();
   pop();
   // console.log("level:", level, "levSm:", levSm);
