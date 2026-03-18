@@ -50,7 +50,7 @@ function draw() {
             let oldG = old.pixels[p + 1];
             let oldB = old.pixels[p + 2];
             let oldBr = (oldR * 2 + oldG * 3 + oldB) / 6;
-            sliderOne.value(map(br, 0, 200, 2, 30));
+            sliderOne.value(map(br, 0, 255, 2, 30));
             let motion = abs(oldBr - br);
             push();
             translate(x + l/2, y + l/2, z + l/2)
