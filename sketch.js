@@ -19,11 +19,9 @@ function setup() {
   sliderOne.parent("slider-holder");
 }
 
-
 function draw() {
   background(0);
   d = sliderOne.value();
-  // orbitControl();
   let t = frameCount*0.02;
   let level = mic.getLevel()
   levSm = lerp(levSm, level, 0.8);
@@ -32,13 +30,15 @@ function draw() {
     scale(map(abs(sin(t)),0,1,1,1.2));
   }
   let rot = map(levSm, 0.001, 0.15, -PI/4, PI/4);
-
   cam.loadPixels();
   old.loadPixels();
   translate(-cam.width / 2, -cam.height / 2, 0);
+  let totalMotion = 0;
+  let count = 0;
+  let threshold = 5;
 
   for (let y = 0; y < cam.height; y = y + l) {
-      for (let x = 0; x < cam.width; x = x + l) {
+      for (let x = 0; x < cam.width + 8; x = x + l) {
           for (let z = 0; z < l * 10; z = z + l) {
             let p = (x + y * cam.width) * 4;
             let r = cam.pixels[p];
