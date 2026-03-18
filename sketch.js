@@ -38,7 +38,7 @@ function draw() {
   let threshold = 5;
 
   for (let y = 0; y < cam.height; y = y + l) {
-      for (let x = 0; x < cam.width + 8; x = x + l) {
+      for (let x = 0; x < cam.width; x = x + l) {
           for (let z = 0; z < l * 10; z = z + l) {
             let p = (x + y * cam.width) * 4;
             let r = cam.pixels[p];
