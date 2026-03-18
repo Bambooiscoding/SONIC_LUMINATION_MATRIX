@@ -1,0 +1,73 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+}
+
+body {
+  font-family: 'Oxanium', sans-serif;
+}
+
+#wrapper {
+  width: 1280px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  margin-right: -0.25em;
+  text-transform: uppercase;
+}
+
+#canvas-holder {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+#slider-holder {
+  width: 1280px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+input[type="range"] {
+  width: 268px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+  background: white;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  /* border-radius: 50%; */
+  margin-top: -7px;
+}
+
+#author {
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
