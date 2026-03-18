@@ -17,6 +17,7 @@ function setup() {
   mic.start(); 
   sliderOne = createSlider(2, 30, 16);
   sliderOne.parent("slider-holder");
+  noCursor();
 }
 
 function draw() {
