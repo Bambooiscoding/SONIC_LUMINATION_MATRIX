@@ -11,7 +11,7 @@ body {
 
 #wrapper {
   width: 1280px;
-  margin: 20px auto;
+  margin: 50px auto;
   text-align: center;
 }
 
@@ -32,6 +32,7 @@ h1 {
 canvas {
   display: block;
   margin: 0 auto;
+  transform: translateY(-50px);
 }
 
 #slider-holder {
@@ -40,10 +41,11 @@ canvas {
   display: flex;
   justify-content: center;
   gap: 24px;
+  transform: translateY(-12px);
 }
 
 input[type="range"] {
-  width: 568px;
+  width: 564px;
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
@@ -57,15 +59,15 @@ input[type="range"]::-webkit-slider-runnable-track {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   background: white;
   /* border-radius: 50%; */
   margin-top: -7px;
 }
 
 #author {
-  margin-top: 16px;
+  margin-top: 12px;
   font-size: 12px;
   letter-spacing: 0.3em;
   opacity: 0.5;
