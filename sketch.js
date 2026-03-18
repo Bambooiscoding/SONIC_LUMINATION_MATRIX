@@ -23,7 +23,6 @@ function setup() {
 function draw() {
   background(0);
   d = sliderOne.value();
-  l = sliderTwo.value(); 
   // orbitControl();
   let t = frameCount*0.02;
   let level = mic.getLevel()
