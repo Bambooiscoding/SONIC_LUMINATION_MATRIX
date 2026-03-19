@@ -5,7 +5,7 @@ let old;
 let sliderOne;
 
 function setup() {
-  createCanvas(1440, 1080, WEBGL);
+  createCanvas(1280, 960, WEBGL);
   pixelDensity(1);
   imageMode(CENTER);
   cam = createCapture(VIDEO);
