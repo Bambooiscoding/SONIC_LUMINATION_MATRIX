@@ -3,21 +3,18 @@ let l = 32;
 let levSm = 0;
 let old;
 let sliderOne;
+let cam;
+let mic;
 let started = false;
 
 function setup() {
   createCanvas(1280, 960, WEBGL);
   pixelDensity(1);
   imageMode(CENTER);
-  cam = createCapture(VIDEO);
-  cam.size(640, 480);
-  cam.hide();
-  old = createImage(640,480);
-  mic = new p5.AudioIn();
-  userStartAudio();
-  mic.start(); 
+
   sliderOne = createSlider(2, 30, 16);
   sliderOne.parent("slider-holder");
+
   const enterBtn = document.getElementById('intro-enter');
   const overlay = document.getElementById('intro-overlay');
   enterBtn.addEventListener('click', async () => {
@@ -42,7 +39,6 @@ function setup() {
     }
   });
 }
-
 function draw() {
   background(0);
   if (!started) return; 
