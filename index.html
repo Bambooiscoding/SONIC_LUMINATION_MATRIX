@@ -3,103 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pixel-body</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
-      canvas { display: block; }
-
-      #slider-holder {
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 5;
-      }
-
-      #intro-overlay {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        transition: opacity 1.2s ease;
-        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-        color: #f0f0f0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-      }
-
-      #intro-overlay.fade-out {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .intro-card {
-        position: relative;
-        width: 33vw;
-        min-width: 420px;
-        max-width: 560px;
-        background: rgba(20, 20, 20, 0.82);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-        padding: 48px 44px 40px 44px;
-        text-align: center;
-      }
-
-      .intro-card h1 {
-        font-size: 1.7rem;
-        font-weight: 300;
-        letter-spacing: 0.02em;
-        line-height: 1.35;
-        margin: 0 0 24px 0;
-      }
-
-      .intro-card .sub {
-        font-size: 0.92rem;
-        line-height: 1.7;
-        font-weight: 300;
-        opacity: 0.72;
-        margin: 0 0 32px 0;
-      }
-
-      .intro-card .note {
-        font-size: 0.75rem;
-        line-height: 1.5;
-        font-weight: 300;
-        opacity: 0.45;
-        margin: 0 0 28px 0;
-      }
-
-      .intro-enter {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        color: #f0f0f0;
-        padding: 12px 36px;
-        font-size: 0.78rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        font-weight: 300;
-        font-family: inherit;
-        cursor: pointer;
-        border-radius: 2px;
-        transition: background 0.25s ease, border-color 0.25s ease;
-      }
-
-      .intro-enter:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.7);
-      }
-    </style>
+    <title>SONIC LUMINATION MATRIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="wrapper">
+      <h1>SONIC LUMINATION MATRIX</h1>
+      <div id="canvas-holder"></div>
+      <div id="slider-holder"></div>
+      <div id="author">BAMBOO ZHU</div>
+    </div>
+
     <div id="intro-overlay">
       <div class="intro-card">
-        <h1>Your body,<br/>reconstructed in light cubes</h1>
+        <h2>Your body,<br/>reconstructed in light cubes</h2>
         <p class="sub">
           Play your favourite song aloud — let the sound reshape your body.<br/>
           Drag the slider to dissolve or resolve the grid.
@@ -108,8 +26,6 @@
         <button class="intro-enter" id="intro-enter">Enter</button>
       </div>
     </div>
-
-    <div id="slider-holder"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
