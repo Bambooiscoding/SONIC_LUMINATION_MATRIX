@@ -1,8 +1,11 @@
-let d = 16;
+let d = 20;
 let l = 32;
 let levSm = 0;
 let old;
 let sliderOne;
+let sliderTwo;
+let maxMotion = 0;
+let motionSm = 0;
 let cam;
 let mic;
 let started = false;
@@ -15,6 +18,8 @@ function setup() {
 
   sliderOne = createSlider(2, 30, 16);
   sliderOne.parent("slider-holder");
+  sliderTwo = createSlider(20, 72, 46);
+  sliderTwo.parent("slider-holder");
 
   const enterBtn = document.getElementById('intro-enter');
   const overlay = document.getElementById('intro-overlay');
@@ -33,8 +38,6 @@ function setup() {
 
       overlay.classList.add('fade-out');
       setTimeout(() => overlay.remove(), 1200);
-
-      noCursor();
     } catch (err) {
       console.error('Permission or init error:', err);
     }
@@ -44,63 +47,75 @@ function setup() {
 function draw() {
   background(0);
   if (!started) return;
-  scale(-1, 1);
+
   d = sliderOne.value();
-  let t = frameCount * 0.02;
-  let level = mic.getLevel();
+  l = sliderTwo.value();
+  // orbitControl();
+  let t = frameCount*0.02;
+  let level = mic.getLevel()
   levSm = lerp(levSm, level, 0.8);
   push();
-  if (levSm > 0.01) {
-    scale(map(abs(sin(t)), 0, 1, 1, 1.2));
+  if(levSm>0.01){
+    scale(map(abs(sin(t)),0,1,0.9,1.1));
   }
-  let rot = map(levSm, 0.001, 0.15, -PI / 4, PI / 4);
+  let rot = map(levSm, 0.001, 0.15, -PI/4, PI/4);
   cam.loadPixels();
   old.loadPixels();
   translate(-cam.width / 2, -cam.height / 2, 0);
   let totalMotion = 0;
   let count = 0;
   let threshold = 5;
-
   for (let y = 0; y < cam.height; y = y + l) {
-    for (let x = 0; x < cam.width; x = x + l) {
-      for (let z = 0; z < l * 10; z = z + l) {
-        let p = (x + y * cam.width) * 4;
-        let r = cam.pixels[p];
-        let g = cam.pixels[p + 1];
-        let b = cam.pixels[p + 2];
-        let br = (r * 2 + g * 3 + b) / 6;
-        let a = br * map(z, 0, 360, 2, 0.001) * map(levSm, 0.001, 0.1, 0.001, 2);
-        let oldR = old.pixels[p];
-        let oldG = old.pixels[p + 1];
-        let oldB = old.pixels[p + 2];
-        let oldBr = (oldR * 2 + oldG * 3 + oldB) / 6;
-        sliderOne.value(map(br, 0, 255, 2, 30));
-        let motion = abs(oldBr - br);
-        push();
-        translate(x + l / 2, y + l / 2, z + l / 2);
-        rotateX(sin(0.01 * (motion + x)));
-        rotateY(cos(0.01 * (motion + y)));
-        cube(r, g, b, a);
-        pop();
-      }
+      for (let x = 0; x < cam.width; x = x + l) {
+          for (let z = 0; z < l * 10; z = z + l) {
+            let p = (x + y * cam.width) * 4;
+            let r = cam.pixels[p];
+            let g = cam.pixels[p + 1];
+            let b = cam.pixels[p + 2];
+            // console.log("r:", r, "g:", g, "b:", b);
+            let br = (r * 2 + g * 3 + b) / 6;
+            // console.log("br:", br);
+            let a = br * map(z, 0, 360, 2, 0.001) * map(levSm,0.001,0.1,0.001,2);
+            // console.log("a:", a);
+            
+            let oldR = old.pixels[p];
+            let oldG = old.pixels[p + 1];
+            let oldB = old.pixels[p + 2];
+            let oldBr = (oldR * 2 + oldG * 3 + oldB) / 6;
+            sliderOne.value(map(br, 0, 200, 2, 30));
+            let motion = abs(br - oldBr);
+            if (motion > threshold) {
+            totalMotion += motion;
+            count++;
+            }
+            push();
+            translate(x + l/2, y + l/2, z + l/2)
+            rotateX(sin(0.01*(motion + x)));
+            rotateY(cos(0.01*(motion + y)));
+            cube(r, g, b, a);
+            pop();
+            }
+        }
     }
-  }
+  let avgMotion = count > 0 ? totalMotion / count : 0;
+  motionSm = lerp(motionSm, avgMotion, 0.1);
+  sliderTwo.value(map(motionSm, 0, 255, 20, 72));   
   cam.updatePixels();
   pop();
+  // console.log("level:", level, "levSm:", levSm);
 }
-
-function cube(r, g, b, a) {
+function cube(r, g, b, a) {  
   noStroke();
-  for (let i = 0; i < 6; i++) {
-    if (i % 2 == 0) {
-      rotateX(PI / 2);
-    } else {
-      rotateY(PI / 2);
+  for(let i=0;i<6;i++){
+    if(i%2==0){
+      rotateX(PI/2);
+    }else{
+      rotateY(PI/2);
     }
     push();
     fill(r, g, b, a);
-    translate(0, 0, -d / 2);
+    translate(0,0,-d/2);
     plane(d, d);
     pop();
-  }
+  } 
 }
