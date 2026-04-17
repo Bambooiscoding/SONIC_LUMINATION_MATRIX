@@ -3,6 +3,7 @@ let l = 32;
 let levSm = 0;
 let old;
 let sliderOne;
+let started = false;
 
 function setup() {
   createCanvas(1280, 960, WEBGL);
@@ -17,11 +18,34 @@ function setup() {
   mic.start(); 
   sliderOne = createSlider(2, 30, 16);
   sliderOne.parent("slider-holder");
-  noCursor();
+  const enterBtn = document.getElementById('intro-enter');
+  const overlay = document.getElementById('intro-overlay');
+  enterBtn.addEventListener('click', async () => {
+    try {
+      cam = createCapture(VIDEO);
+      cam.size(640, 480);
+      cam.hide();
+      old = createImage(640, 480);
+
+      mic = new p5.AudioIn();
+      await userStartAudio();
+      mic.start();
+
+      started = true;
+
+      overlay.classList.add('fade-out');
+      setTimeout(() => overlay.remove(), 1200);
+
+      noCursor();
+    } catch (err) {
+      console.error('Permission or init error:', err);
+    }
+  });
 }
 
 function draw() {
   background(0);
+  if (!started) return; 
   scale(-1, 1);
   d = sliderOne.value();
   let t = frameCount*0.02;
