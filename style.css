@@ -71,3 +71,84 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 0.5;
   text-transform: uppercase;
 }
+
+/* ===== Intro Overlay ===== */
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 1.2s ease;
+  font-family: 'Oxanium', -apple-system, sans-serif;
+  color: #f0f0f0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-card {
+  position: relative;
+  width: 33vw;
+  min-width: 420px;
+  max-width: 560px;
+  background: rgba(20, 20, 20, 0.82);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 48px 44px 40px 44px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.intro-card h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin: 0 0 24px 0;
+}
+
+.intro-card .sub {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.72;
+  margin: 0 0 32px 0;
+}
+
+.intro-card .note {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 300;
+  opacity: 0.45;
+  margin: 0 0 28px 0;
+}
+
+.intro-enter {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f0f0f0;
+  padding: 12px 36px;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.intro-enter:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.7);
+}
